@@ -6,7 +6,7 @@ public class Gun : MonoBehaviour
 {
 
     public GameObject bullet;
-    float timer = 2.8f;
+    float timer = 0.8f;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,7 +18,7 @@ public class Gun : MonoBehaviour
     {
         timer += Time.deltaTime;
 
-        if(timer>=3)
+        if(timer>=1)
         {
             Instantiate(bullet, transform);
 

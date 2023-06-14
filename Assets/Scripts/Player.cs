@@ -40,7 +40,9 @@ public class Player : MonoBehaviour
     {
         if (collision.gameObject.tag == "Trap")
         {
-            Destroy(gameObject);
+            gameObject.transform.position = new Vector3(-8.8f, 2.7f, 0f);
+
+
 
         }
 

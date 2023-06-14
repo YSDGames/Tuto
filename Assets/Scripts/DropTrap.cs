@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bullet : MonoBehaviour
+public class DropTrap : MonoBehaviour
 {
+    public Player player;
     // Start is called before the first frame update
     void Start()
     {
@@ -13,14 +14,9 @@ public class Bullet : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        gameObject.transform.position += Vector3.left * Time.deltaTime * 5f;
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "wall")
+        if (player.gameObject.transform.position.x >=-5.2f && player.gameObject.transform.position.y<-2.1f)
         {
-            Destroy(gameObject);
+            gameObject.GetComponent<Rigidbody2D>().gravityScale = 1f;
         }
     }
 }
