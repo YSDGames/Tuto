@@ -6,13 +6,13 @@ public class Player : MonoBehaviour
 {
 
     public float speed = 3f;
-    public float jumpForce = 10f;
+    public float jumpForce = 200f;
     Rigidbody2D rigid;
     Vector2 jump;
 
-    bool isJump=false;
+    bool isJump = false;
 
-    // Start is called before the first frame update
+    
     void Start()
     {
         rigid = GetComponent<Rigidbody2D>();
@@ -23,11 +23,11 @@ public class Player : MonoBehaviour
     void Update()
     {
         float x = Input.GetAxisRaw("Horizontal");
-        
+
 
         transform.position += new Vector3(x, 0, 0) * Time.deltaTime * speed;
 
-        if(Input.GetKeyDown(KeyCode.Space) && !isJump)
+        if (Input.GetKeyDown(KeyCode.Space) && !isJump)
         {
             isJump = true;
             rigid.AddForce(jump);
@@ -46,12 +46,12 @@ public class Player : MonoBehaviour
 
         }
 
-        
+
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.tag == "bottom")
+        if (collision.gameObject.tag == "bottom")
         {
             isJump = false;
         }

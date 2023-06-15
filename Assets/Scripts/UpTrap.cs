@@ -7,23 +7,41 @@ public class UpTrap : MonoBehaviour
     public Player player;
 
     bool isTrig = false;
+    public float plX;
+    public bool keepGo = true;
+    float y;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-
+         y = transform.position.y;
+        
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        float diffX = Mathf.Abs(player.gameObject.transform.position.x - transform.position.x);
+        float diffY = player.gameObject.transform.position.y - transform.position.y;
 
-        if (player.gameObject.transform.position.x >= 4.6f && player.gameObject.transform.position.y < -2.1f)
+
+        if (diffX < plX && diffY < 2.5f)
             isTrig = true;
 
         if (isTrig)
-            transform.position = Vector3.MoveTowards(transform.position, new Vector3(transform.position.x, -4.5f, 0), Time.deltaTime * 1f);
+        {
+            if (keepGo)
+            {
+                transform.position += Vector3.up * Time.deltaTime * 5f;
+            }
+            else
+            {
+                transform.position = Vector3.MoveTowards(transform.position, new Vector3(transform.position.x, y + 0.6f , 0), Time.deltaTime * 1f);
+            }
+        }
+            
+        if(transform.position.y > 7)
+        {
+            Destroy(gameObject);
+        }
 
     }
 }

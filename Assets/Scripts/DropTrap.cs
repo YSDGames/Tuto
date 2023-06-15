@@ -5,16 +5,22 @@ using UnityEngine;
 public class DropTrap : MonoBehaviour
 {
     public Player player;
+    public float plX;
+    public GameObject fakeWall;
+    public bool isFake = false;
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (player.gameObject.transform.position.x >=-5.2f && player.gameObject.transform.position.y<-2.1f)
+        float diffX = Mathf.Abs(player.gameObject.transform.position.x - transform.position.x);
+
+
+        if (diffX < plX  && player.gameObject.transform.position.y < transform.position.y)
         {
             gameObject.GetComponent<Rigidbody2D>().gravityScale = 1f;
         }
